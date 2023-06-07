@@ -1,0 +1,7 @@
+﻿@model Yorum
+<form method="post" asp-controller="Home" asp-action="Duzenle">
+    <input type="hidden" value="@Model.YorumID" id="id" name="id"/>
+    <textarea rows="4" cols="50" id="txtNewYorum" name="NewYorum">@Model.YorumAciklama</textarea>
+    <br/>
+    <button type="submit">Düzenle</button>
+</form>

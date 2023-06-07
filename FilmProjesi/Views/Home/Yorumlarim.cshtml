@@ -1,0 +1,17 @@
+﻿@model Dictionary<string, List<Yorum>>
+<ul>
+    @foreach (var key in Model.Keys)
+    {
+        <li>
+            @key
+            @foreach (var yorum in Model[key])
+            {
+                <ul>
+                    <li>@yorum.YorumAciklama</li>
+                    <li>@yorum.YorumTarihi</li>
+                    <li><a href="@Url.Action("YorumSil","Home",new {id=yorum.YorumID})">Sil</a> <a href="@Url.Action("YorumDuzenle","Home",new {id=yorum.YorumID})">Düzenle</a></li>
+                </ul> <br/>
+            }
+    </li>
+}
+</ul>

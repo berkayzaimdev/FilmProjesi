@@ -1,0 +1,44 @@
+﻿@{
+    var filmViewModel = ViewData["FilmViewModel"] as FilmViewModel;
+}
+
+<h1>Film Listesi</h1>
+<ul>
+    @foreach (var film in filmViewModel.Filmler)
+    {
+        <li>
+            <a href="@Url.Action("FilmDetay", "Home", new { id = film.FilmID })">@film.FilmAd</a>
+        </li>
+    }
+</ul>
+
+@if(!User.Identity.IsAuthenticated)
+{
+    <form method="post" asp-controller="Film" asp-action="FilmEkle">
+        <div class="input-group">
+            <table class="table-bordered p-5">
+                <tr>
+                    <td>
+                        <label>Film Adı:</label>
+                    </td>
+                    <td>
+                        <input id="txtFilmAd" name="FilmAd" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Film Açıklaması:</label>
+                    </td>
+                    <td>
+                        <textarea rows="4" cols="50" id="txtFilmAciklama" name="FilmAciklama"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <button type="submit" class="btn-success">Film Ekle</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+}

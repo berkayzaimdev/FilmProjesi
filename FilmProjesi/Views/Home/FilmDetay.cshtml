@@ -1,0 +1,26 @@
+﻿@model Film
+
+<h1>Film Açıklaması</h1>
+@Model.FilmAciklama
+
+<h1>Yorumlar</h1>
+
+@foreach(var yorum in Model.FilmYorumlar)
+{
+    <ul>
+        <li>@yorum.YorumAciklama</li>
+        <li>@yorum.YorumTarihi</li>
+        <li>@yorum.YorumSahibi</li>
+    </ul>
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>Yorum Yap</h1>
+    <form method="post" action="/Home/YorumEkle">
+        <input type="hidden" name="id" value="@Model.FilmID" />
+        <textarea rows="4" cols="50" id="txtYorum" name="Yorum"></textarea><br />
+        <input type="hidden" name="username" value="@User.Identity.Name">
+        <button type="submit" class="btn-success">Ekle</button>
+    </form>
+}
